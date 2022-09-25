@@ -1,0 +1,51 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: service1
+  cloud:
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 127.0.0.1:8858
+      datasource:
+        flow-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: flow
+            data-type: json
+            data-id: ${spring.application.name}-flow-rules
+        degrade-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: degrade
+            data-type: json
+            data-id: ${spring.application.name}-degrade-rules
+        system-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: system
+            data-type: json
+            data-id: ${spring.application.name}-system-rules
+        param-flow-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: param_flow
+            data-type: json
+            data-id: ${spring.application.name}-param-flow-rules
+        authority-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: authority
+            data-type: json
+            data-id: ${spring.application.name}-authority-rules

@@ -1,0 +1,33 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: gateway
+  cloud:
+    sentinel:
+      eager: true
+      transport:
+        dashboard: 127.0.0.1:8858
+      scg:
+        fallback:
+          mode: response
+          response-status: 426
+          response-body: '{"code": 426,"message": "?????????"}'
+          content-type: application/json
+      datasource:
+        gw-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: gw_flow
+            data-type: json
+            data-id: ${spring.application.name}-gw-rules
+        gw-api-ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            username: nacos
+            password: nacos
+            rule-type: gw_api_group
+            data-type: json
+            data-id: ${spring.application.name}-gw-api-rules
