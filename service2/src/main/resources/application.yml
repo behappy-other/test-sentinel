@@ -45,10 +45,3 @@ spring:
             rule-type: authority
             data-type: json
             data-id: ${spring.application.name}-authority-rules
-feign:
-  client:
-    config:
-      default:
-        loggerLevel: FULL
-  sentinel:
-    enabled: true
